@@ -8,8 +8,7 @@ author of the repository: Elena Papaleo, elenap@cancer.dk
 This repository contains normalized and log2 transformed data from the R2.mc.nl database with AMBRA1 and MYC expression levels in medulloblastoma.
 The repository  was made with the intent of openly sharing both the raw input data used at the time of the analyses and the R-scripts employed to carry out the study.
 
-The repository contains the following folders and each folders contain a different README file with further information:
-
+Start using the rscripts/R2_medullo_analyses.R
 
 Requirements:
 
