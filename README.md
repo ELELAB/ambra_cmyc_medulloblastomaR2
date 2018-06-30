@@ -22,8 +22,8 @@ Other packages required:
 CRAN:
 
 ggplot
-tibble
 dplyr
+ggpubr
 
 BIOCONDUCTOR:
 
