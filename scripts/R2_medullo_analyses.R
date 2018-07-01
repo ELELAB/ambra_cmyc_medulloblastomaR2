@@ -40,7 +40,6 @@ Pg3.fpkm <- select(Pg3.fpkm, V3:V43)
 Pg3.fpkm <- t(Pg3.fpkm)
 dim(Pg3.fpkm)
 
-
 Pg4.fpkm <- read.table("downloaded_data/Pfister_fpkm/pfister_g4_fpkm_log2.txt", sep = '\t', header = FALSE)
 View(Pg4.fpkm)
 ###check the group size - Pshh.fpkm should contain 64 samples
@@ -68,7 +67,6 @@ dim(Pwnt.fpkm)
 #par(mar=c(1,1,1,1))
 
 ### correlation between AMBRA and MYC ###
-
 
 cor.test (Pshh.fpkm[,1], Pshh.fpkm[,2], method= "pearson")
 cor.test (Pshh.fpkm[,1], Pshh.fpkm[,2], method= "kendall")
@@ -122,7 +120,7 @@ dev.off()
 
 #weak correlation with kendall and pearson
 
-#plot data
+### boxplots AMBRA1 and MYC expression levels ###
 
 pdf("plots/P.fpkm_four_AMBRA.pdf")
 boxplot(Pshh.fpkm[,1],Pg4.fpkm[,1], Pg3.fpkm[,1],Pwnt.fpkm[,1])
@@ -146,7 +144,7 @@ shapiro.test(Pshh.fpkm[,1])
 #obtained 0.015 - data not normally distributed!
 d<- density(Pshh.fpkm[,2])
 plot(d)
-#skewness to the right 
+
 #Q-Q plot
 ggqqplot(Pshh.fpkm[,2])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
@@ -204,7 +202,7 @@ shapiro.test(Pg3.fpkm[,2])
 #evaluate data distribution
 d<- density(Pwnt.fpkm[,1])
 plot(d)
-#skewness to the left
+
 #Q-Q plot
 ggqqplot(Pwnt.fpkm[,1])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
@@ -214,7 +212,7 @@ shapiro.test(Pwnt.fpkm[,1])
 #obtained 0.91
 d<- density(Pwnt.fpkm[,2])
 plot(d)
-#skewness to the left
+
 #Q-Q plot
 ggqqplot(Pwnt.fpkm[,2])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
@@ -223,7 +221,7 @@ shapiro.test(Pwnt.fpkm[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
 #obtained p-value=0.04 not normally distributed!
 
-#t-test pairwise
+#t-test pairwise  - AMBRA
 t.test(as.vector(Pshh.fpkm[,1]), as.vector(Pg3.fpkm[,1]))  # p-value = 0.00254
 t.test(as.vector(Pg4.fpkm[,1]), as.vector(Pg3.fpkm[,1])) # p-value = 0.008657
 t.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pg3.fpkm[,1])) # p-value = 1.937e-06
@@ -231,13 +229,30 @@ t.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pshh.fpkm[,1])) # p-value = 7.862e-08
 t.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pg4.fpkm[,1])) #  p-value = 1.332e-07
 t.test(as.vector(Pg4.fpkm[,1]), as.vector(Pshh.fpkm[,1])) #  p-value = 0.543   NOT SIGNIFICANT
 
-#wilcox test - better when there are deviation from normality
+#wilcox test - better when there are deviations from normality - AMBRA
 wilcox.test(as.vector(Pshh.fpkm[,1]), as.vector(Pg3.fpkm[,1]))  #  p-value = 0.0224
 wilcox.test(as.vector(Pg4.fpkm[,1]), as.vector(Pg3.fpkm[,1])) # p-value = 0.03793
-wilcox.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pg3.fpkm[,1])) # ties
+wilcox.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pg3.fpkm[,1])) #  p-value = 1.361e-06
 wilcox.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pshh.fpkm[,1])) #p-value = 6.665e-11
 wilcox.test(as.vector(Pwnt.fpkm[,1]), as.vector(Pg4.fpkm[,1]))  #p-value = 1.417e-08
 wilcox.test(as.vector(Pg4.fpkm[,1]), as.vector(Pshh.fpkm[,1])) # p-value = 0.5325  NOT SIGNIFICANT
+
+
+#t-test pairwise - MYC
+t.test(as.vector(Pshh.fpkm[,2]), as.vector(Pg3.fpkm[,2]))  #   p-value = 2.572e-11 
+t.test(as.vector(Pg4.fpkm[,2]), as.vector(Pg3.fpkm[,2])) # p-value = 2.429e-11
+t.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pg3.fpkm[,2])) #  p-value = 0.8914 NOT SIGNIFICANT
+t.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pshh.fpkm[,2])) # p-value < 2.2e-16
+t.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pg4.fpkm[,2])) #  p-value < 2.2e-16
+t.test(as.vector(Pg4.fpkm[,2]), as.vector(Pshh.fpkm[,2])) #   p-value = 0.9808  NOT SIGNIFICANT
+
+#wilcox test - better when there are deviation from normality - MYC
+wilcox.test(as.vector(Pshh.fpkm[,2]), as.vector(Pg3.fpkm[,2]))  # p-value = 1.402e-10
+wilcox.test(as.vector(Pg4.fpkm[,2]), as.vector(Pg3.fpkm[,2])) # p-value = 1.159e-11
+wilcox.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pg3.fpkm[,2])) # p-value = 1.159e-11
+wilcox.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pshh.fpkm[,2])) #  p-value = 4.979e-09
+wilcox.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pg4.fpkm[,2]))  # p-value = 4.859e-09
+wilcox.test(as.vector(Pg4.fpkm[,2]), as.vector(Pshh.fpkm[,2])) # p-value = 0.5266 NOT SIGNIFICANT
 
 
 #### Pfister mas5 databasets
@@ -348,7 +363,6 @@ pdf("plots/Pwnt_mas5_correlations_heatmap.pdf")
 heatmap(t(Pwnt.mas5[1:17,]), cexRow = 0.9, Colv=NA, Rowv=NA)
 dev.off()
 
-# weak correlation
 
 #plot all four
 pdf("plots/P_mas5_four_AMBRA.pdf")
@@ -449,7 +463,7 @@ shapiro.test(Pwnt.mas5[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
 #obtained p-value= 0.03069 not normally distributed!
 
-#t-test pairwise
+#t-test pairwise - AMBRA1
 t.test(as.vector(Pshh.mas5[,1]), as.vector(Pg3.mas5[,1]))  # p-value = 0.03510302
 t.test(as.vector(Pg4.mas5[,1]), as.vector(Pg3.mas5[,1])) # p-value =  0.03301
 t.test(as.vector(Pwnt.mas5[,1]), as.vector(Pg3.mas5[,1])) # p-value =  6.361e-06
@@ -457,7 +471,7 @@ t.test(as.vector(Pwnt.mas5[,1]), as.vector(Pshh.mas5[,1])) # p-value = 2.084e-06
 t.test(as.vector(Pwnt.mas5[,1]), as.vector(Pg4.mas5[,1])) #  p-value = 1.025e-06
 t.test(as.vector(Pg4.mas5[,1]), as.vector(Pshh.mas5[,1])) #  p-value = 0.3759   NOT SIGNIFICANT
 
-#wilcox test - better when there are deviation from normality
+#wilcox test - better when there are deviation from normality - AMBRA1
 wilcox.test(as.vector(Pshh.mas5[,1]), as.vector(Pg3.mas5[,1]))  #  p-value = 0.1191 NOT SIGNIFICANT
 wilcox.test(as.vector(Pg4.mas5[,1]), as.vector(Pg3.mas5[,1])) # p-value = 0.05708
 wilcox.test(as.vector(Pwnt.mas5[,1]), as.vector(Pg3.mas5[,1])) # p-value = 1.495e-07
@@ -465,6 +479,21 @@ wilcox.test(as.vector(Pwnt.mas5[,1]), as.vector(Pshh.mas5[,1])) #p-value =  1.52
 wilcox.test(as.vector(Pwnt.mas5[,1]), as.vector(Pg4.mas5[,1]))  #p-value = 5.293e-09
 wilcox.test(as.vector(Pg4.mas5[,1]), as.vector(Pshh.mas5[,1])) # p-value = 0.7539  NOT SIGNIFICANT
 
+#t-test pairwise - MYC 
+t.test(as.vector(Pshh.mas5[,2]), as.vector(Pg3.mas5[,2])) # p-value < 2.2e-16
+t.test(as.vector(Pg4.mas5[,2]), as.vector(Pg3.mas5[,2])) # p-value = 5.693e-16
+t.test(as.vector(Pwnt.mas5[,2]), as.vector(Pg3.mas5[,2])) # p-value = 0.8281 NOT SIGNIFICANT
+t.test(as.vector(Pwnt.mas5[,2]), as.vector(Pshh.mas5[,2])) # p-value = 8.979e-13
+t.test(as.vector(Pwnt.mas5[,2]), as.vector(Pg4.mas5[,2])) # p-value = 1.767e-13
+t.test(as.vector(Pg4.mas5[,2]), as.vector(Pshh.mas5[,2])) #  p-value = 0.9385 NOT SIGNIFICANT
+
+#wilcox test - better when there are deviation from normality - MYC
+wilcox.test(as.vector(Pshh.mas5[,2]), as.vector(Pg3.mas5[,2]))  #  p-value = 2.408e-14
+wilcox.test(as.vector(Pg4.mas5[,2]), as.vector(Pg3.mas5[,2])) # p-value = 9.023e-15
+wilcox.test(as.vector(Pwnt.mas5[,2]), as.vector(Pg3.mas5[,2])) # p-value = 0.9532 NOT SIGNIFICANT
+wilcox.test(as.vector(Pwnt.mas5[,2]), as.vector(Pshh.mas5[,2])) # p-value = 1.876e-09
+wilcox.test(as.vector(Pwnt.mas5[,2]), as.vector(Pg4.mas5[,2]))  # p-value = 3.707e-09
+wilcox.test(as.vector(Pg4.mas5[,2]), as.vector(Pshh.mas5[,2])) # p-value = 0.9923 NOT SIGNIFICANT
 
 #### Gilbertson mas5 databasets
 
@@ -493,7 +522,6 @@ Gg3.mas5 <- as.data.frame(Gg3.mas5)
 Gg3.mas5 <- select(Gg3.mas5, V3:V18)
 Gg3.mas5 <- t(Gg3.mas5)
 dim(Gg3.mas5)
-
 
 Gg4.mas5 <- read.table("downloaded_data/Gilbertson_mas5.0/gilbertson_g4_mas5_log2.txt", sep = '\t', header = FALSE)
 View(Gg4.mas5)
@@ -672,7 +700,7 @@ shapiro.test(Gwnt.mas5[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
 #obtained p-value= 0.2506
 
-#t-test pairwise
+#t-test pairwise - AMBRA1
 t.test(as.vector(Gshh.mas5[,1]), as.vector(Gg3.mas5[,1]))  # p-value = 0.905 NOT SIGNIFICANT
 t.test(as.vector(Gg4.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value =  0.9656 NOT SIGNIFICANT
 t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value =  0.01454
@@ -680,10 +708,27 @@ t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gshh.mas5[,1])) # p-value = 0.0154
 t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg4.mas5[,1])) #  p-value = 0.01349
 t.test(as.vector(Gg4.mas5[,1]), as.vector(Gshh.mas5[,1])) #  p-value = 0.9178   NOT SIGNIFICANT
 
-#wilcox test - better when there are deviation from normality
+#wilcox test - better when there are deviation from normality - AMBRA1
 wilcox.test(as.vector(Gshh.mas5[,1]), as.vector(Gg3.mas5[,1]))  #  p-value = 0.1191 NOT SIGNIFICANT
 wilcox.test(as.vector(Gg4.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value = 0.05708
 wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value = 1.495e-07
 wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gshh.mas5[,1])) #p-value =  1.521e-08
 wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg4.mas5[,1]))  #p-value = 5.293e-09
 wilcox.test(as.vector(Gg4.mas5[,1]), as.vector(Gshh.mas5[,1])) # p-value = 0.7539  NOT SIGNIFICANT
+
+#t-test pairwise - MYC
+t.test(as.vector(Gshh.mas5[,2]), as.vector(Gg3.mas5[,2]))  # p-value = 4.727e-09
+t.test(as.vector(Gg4.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 4.983e-09
+t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 0.5395 NOT SIGNIFICANT
+t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 2.594e-05
+t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg4.mas5[,2])) # p-value = 6.663e-05
+t.test(as.vector(Gg4.mas5[,2]), as.vector(Gshh.mas5[,2])) #  p-value = 0.2443 NOT SIGNIFICANT
+
+#wilcox test - better when there are deviation from normality - MYC
+wilcox.test(as.vector(Gshh.mas5[,2]), as.vector(Gg3.mas5[,2]))  # p-value = 7.53e-07
+wilcox.test(as.vector(Gg4.mas5[,2]), as.vector(Gg3.mas5[,2])) #  p-value = 1.199e-09
+wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 0.9284 NOT SIGNIFICANT
+wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 4.571e-05
+wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg4.mas5[,2]))  #  p-value = 1.669e-05
+wilcox.test(as.vector(Gg4.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 0.1875 NOT SIGNIFICANT
+
