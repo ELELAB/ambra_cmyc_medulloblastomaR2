@@ -255,6 +255,49 @@ wilcox.test(as.vector(Pwnt.fpkm[,2]), as.vector(Pg4.fpkm[,2]))  # p-value = 4.85
 wilcox.test(as.vector(Pg4.fpkm[,2]), as.vector(Pshh.fpkm[,2])) # p-value = 0.5266 NOT SIGNIFICANT
 
 
+### definition of 'overexpressing MYC' samples in g3 and wnt ###
+
+#calculate  summary statistics for group 4 and shh (i.e., subtypes with no overexp. of MYC)
+summary(Pg4.fpkm[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.516   1.109   1.597   1.880   2.328   5.514 
+
+summary(Pshh.fpkm[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.4957  1.2598  1.7437  1.8842  2.4213  4.045
+
+#threshold selected as the max of expression observed in shh group 4.045
+
+### isolate only 'overexp. MYC' samples for g3 and wnt - using the threshold above
+
+Pg3.fpkm.hMYC <- subset(Pg3.fpkm, Pg3.fpkm[,2] > 4.045)
+dim(Pg3.fpkm.hMYC)
+# 25 2
+Pwnt.fpkm.hMYC <- subset(Pwnt.fpkm, Pwnt.fpkm[,2] > 4.045)
+dim(Pwnt.fpkm.hMYC)
+# 14 2
+
+cor.test (Pg3.fpkm.hMYC[,1], Pg3.fpkm.hMYC[,2], method= "pearson")
+cor.test (Pg3.fpkm.hMYC[,1], Pg3.fpkm.hMYC[,2], method= "kendall")
+cor.test (Pg3.fpkm.hMYC[,1], Pg3.fpkm.hMYC[,2], method= "spearman")
+
+plot(Pg3.fpkm.hMYC[,1], Pg3.fpkm.hMYC[,2])
+
+pdf("plots/Pg3_fpkm_hMYC_correlations_heatmap.pdf")
+heatmap(t(Pg3.fpkm.hMYC[1:25,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+dev.off()
+
+
+cor.test (Pwnt.fpkm.hMYC[,1], Pwnt.fpkm.hMYC[,2], method= "pearson")
+cor.test (Pwnt.fpkm.hMYC[,1], Pwnt.fpkm.hMYC[,2], method= "kendall")
+cor.test (Pwnt.fpkm.hMYC[,1], Pwnt.fpkm.hMYC[,2], method= "spearman")
+
+plot(Pwnt.fpkm.hMYC[,1], Pwnt.fpkm.hMYC[,2])
+
+pdf("plots/Pwnt_fpkm_hMYC_correlations_heatmap.pdf")
+heatmap(t(Pwnt.fpkm.hMYC[1:14,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+dev.off()
+
 #### Pfister mas5 databasets
 
 #### read the data and check group sizes ####
@@ -495,6 +538,53 @@ wilcox.test(as.vector(Pwnt.mas5[,2]), as.vector(Pshh.mas5[,2])) # p-value = 1.87
 wilcox.test(as.vector(Pwnt.mas5[,2]), as.vector(Pg4.mas5[,2]))  # p-value = 3.707e-09
 wilcox.test(as.vector(Pg4.mas5[,2]), as.vector(Pshh.mas5[,2])) # p-value = 0.9923 NOT SIGNIFICANT
 
+
+### definition of 'overexpressing MYC' samples in g3 and wnt ###
+
+#calculate  summary statistics for group 4 and shh (i.e., subtypes with no overexp. of MYC)
+summary(Pg4.mas5[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.3785  5.2457  5.9932  6.1357  6.9799 12.7342
+
+summary(Pshh.mas5[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#3.446   5.434   6.005   6.118   6.927   8.636 
+
+#threshold selected as the max of expression observed in shh group 8.636
+
+### isolate only 'overexp. MYC' samples for g3 and wnt - using the threshold above
+
+Pg3.mas5.hMYC <- subset(Pg3.mas5, Pg3.mas5[,2] > 8.636)
+dim(Pg3.mas5.hMYC)
+# 34 2
+Pwnt.mas5.hMYC <- subset(Pwnt.mas5, Pwnt.mas5[,2] > 8.636)
+dim(Pwnt.mas5.hMYC)
+# 14 2
+
+cor.test (Pg3.mas5.hMYC[,1], Pg3.mas5.hMYC[,2], method= "pearson")
+cor.test (Pg3.mas5.hMYC[,1], Pg3.mas5.hMYC[,2], method= "kendall")
+cor.test (Pg3.mas5.hMYC[,1], Pg3.mas5.hMYC[,2], method= "spearman")
+
+plot(Pg3.mas5.hMYC[,1], Pg3.mas5.hMYC[,2])
+
+pdf("plots/Pg3_mas5_hMYC_correlations_heatmap.pdf")
+heatmap(t(Pg3.mas5.hMYC[1:20,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+heatmap(t(Pg3.mas5.hMYC[21:34,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+dev.off()
+
+
+cor.test (Pwnt.mas5.hMYC[,1], Pwnt.mas5.hMYC[,2], method= "pearson")
+cor.test (Pwnt.mas5.hMYC[,1], Pwnt.mas5.hMYC[,2], method= "kendall")
+cor.test (Pwnt.mas5.hMYC[,1], Pwnt.mas5.hMYC[,2], method= "spearman")
+
+plot(Pwnt.fpkm.hMYC[,1], Pwnt.fpkm.hMYC[,2])
+
+pdf("plots/Pwnt_mas5_hMYC_correlations_heatmap.pdf")
+heatmap(t(Pwnt.fpkm.hMYC[1:14,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+dev.off()
+
+
+
 #### Gilbertson mas5 databasets
 
 #### read the data and check group sizes ####
@@ -732,3 +822,35 @@ wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 4.57
 wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg4.mas5[,2]))  #  p-value = 1.669e-05
 wilcox.test(as.vector(Gg4.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 0.1875 NOT SIGNIFICANT
 
+### definition of 'overexpressing MYC' samples in g3 and wnt ###
+
+#calculate  summary statistics for group 4 and shh (i.e., subtypes with no overexp. of MYC)
+summary(Gg4.mas5[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.3785  5.1858  6.0596  5.8685  6.8093  8.9910
+
+summary(Gshh.mas5[,2])
+#Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#3.858   4.863   5.328   5.386   6.141   6.677  
+
+#threshold selected as the max of expression observed in g4 group 8.9910
+
+### isolate only 'overexp. MYC' samples for g3 and wnt - using the threshold above
+
+Gg3.mas5.hMYC <- subset(Gg3.mas5, Gg3.mas5[,2] > 8.9910)
+dim(Gg3.mas5.hMYC)
+# 11 2
+Gwnt.mas5.hMYC <- subset(Gwnt.mas5, Gwnt.mas5[,2] > 8.9910)
+dim(Gwnt.mas5.hMYC)
+# 5 2
+### not samples enough in Gwnt
+
+cor.test (Gg3.mas5.hMYC[,1], Gg3.mas5.hMYC[,2], method= "pearson")
+cor.test (Gg3.mas5.hMYC[,1], Gg3.mas5.hMYC[,2], method= "kendall")
+cor.test (Gg3.mas5.hMYC[,1], Gg3.mas5.hMYC[,2], method= "spearman")
+
+plot(Gg3.mas5.hMYC[,1], Gg3.mas5.hMYC[,2])
+
+pdf("plots/Gg3_mas5_hMYC_correlations_heatmap.pdf")
+heatmap(t(Gg3.mas5.hMYC[1:11,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+dev.off()
