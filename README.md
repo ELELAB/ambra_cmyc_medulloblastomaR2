@@ -24,7 +24,7 @@ dplyr
 ggpubr
 
 BIOCONDUCTOR:
-
+cemitool
 
 NOTES:
 
@@ -32,6 +32,6 @@ a) We suggest to use Rstudio to run the scripts of interest so that you can foll
 
 
 INFORMATION ON DATA DOWNLOAD:
-We used the R2 genomics platform (https://hgserver1.amc.nl/cgi-bin/r2/main.cgi) to identify suitable transcriptomics datasets with molecular and histological subtypes available for medulloblastoma. We selected the following datasets: Gilbertson (76 samples, MAS5.0 normalized, u133p2 array), Pfister (223 samples, MAS5.0 normalized, u133ps array) and Pfister (167 samples, fpkm normalized, mb500rs1 array)
+We used the R2 genomics platform (https://hgserver1.amc.nl/cgi-bin/r2/main.cgi) to identify suitable transcriptomics datasets with molecular and histological subtypes available for medulloblastoma. We selected the following datasets: Gilbertson (76 samples, MAS5.0 normalized, u133p2 array), Pfister (223 samples, MAS5.0 normalized, u133ps array), Pfister (167 samples, fpkm normalized, mb500rs1 array) and Cavalli (763 samples, rma_sketch normalized, hugene11t chip).
 For each of them we download through the “data grabber” function the data for each subgroup separately and for the 52731_at and 202431_s_at probes for AMBRA1 and c-MYC, respectively, which are the probes with the largest coverage for the two genes. We selected log2 transformed data.
 
