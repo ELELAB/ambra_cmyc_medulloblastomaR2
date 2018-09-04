@@ -134,7 +134,7 @@ dev.off()
 #evaluate data distribution
 d<- density(Pshh.fpkm[,1])
 plot(d)
-#skewness on the left
+
 #Q-Q plot
 ggqqplot(Pshh.fpkm[,1])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
@@ -912,184 +912,186 @@ dim(Cwnt.rma)
 
 ### correlation between AMBRA and MYC ###
 
-cor.test (Gshh.mas5[,1], Gshh.mas5[,2], method= "pearson")
-cor.test (Gshh.mas5[,1], Gshh.mas5[,2], method= "kendall") # cor. 0.33
-cor.test (Gshh.mas5[,1], Gshh.mas5[,2], method= "spearman") #cor. 0.38
+cor.test (Cshh.rma[,1], Cshh.rma[,2], method= "pearson")
+cor.test (Cshh.rma[,1], Cshh.rma[,2], method= "kendall") 
+cor.test (Cshh.rma[,1], Cshh.rma[,2], method= "spearman") 
 
-plot(Gshh.mas5[,1], Gshh.mas5[,2])
+plot(Cshh.rma[,1], Cshh.rma[,2])
 
-colnames(Gshh.mas5) <- c("AMBRA","MYC")
-pdf("plots/Gshh_mas5_correlations_heatmap.pdf")
-heatmap(t(Gshh.mas5[1:10,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+### no heatmaps since too many samples
+
+colnames(Cshh.rma) <- c("AMBRA","MYC")
+pdf("plots/Cshh_rma_correlations_heatmap.pdf")
+heatmap(t(Cshh.rma[1:10,]), cexRow = 0.9, Colv=NA, Rowv=NA)
 dev.off()
 
 # weak correlation
 
-cor.test (Gg3.mas5[,1], Gg3.mas5[,2], method= "pearson") #cor. 0.39
-cor.test (Gg3.mas5[,1], Gg3.mas5[,2], method= "kendall") #cor. 0.25
-cor.test (Gg3.mas5[,1], Gg3.mas5[,2], method= "spearman") #cor. 0.40
+cor.test (Cg3.rma[,1], Cg3.rma[,2], method= "pearson") 
+cor.test (Cg3.rma[,1], Cg3.rma[,2], method= "kendall") 
+cor.test (Cg3.rma[,1], Cg3.rma[,2], method= "spearman") 
 
-plot(Gg3.mas5[,1], Gg3.mas5[,2])
+plot(Cg3.rma[,1], Cg3.rma[,2])
 
-colnames(Gg3.mas5) <- c("AMBRA","MYC")
-pdf("plots/Gg3_mas5_correlations_heatmap.pdf")
-heatmap(t(Gg3.mas5[1:16,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+colnames(Cg3.rma) <- c("AMBRA","MYC")
+pdf("plots/Cg3_rma_correlations_heatmap.pdf")
+heatmap(t(Cg3.rma[1:16,]), cexRow = 0.9, Colv=NA, Rowv=NA)
 dev.off()
 
-# weak correlation
+cor.test (Cg4.rma[,1], Cg4.rma[,2], method= "pearson") 
+cor.test (Cg4.rma[,1], Cg4.rma[,2], method= "kendall") 
+cor.test (Cg4.rma[,1], Cg4.rma[,2], method= "spearman") 
 
-cor.test (Gg4.mas5[,1], Gg4.mas5[,2], method= "pearson") 
-cor.test (Gg4.mas5[,1], Gg4.mas5[,2], method= "kendall") 
-cor.test (Gg4.mas5[,1], Gg4.mas5[,2], method= "spearman") 
+plot(Cg4.rma[,1], Cg4.rma[,2])
 
-plot(Gg4.mas5[,1], Gg4.mas5[,2])
-
-colnames(Gg4.mas5) <- c("AMBRA","MYC")
-pdf("plots/Gg4_mas5_correlations_heatmap.pdf")
-heatmap(t(Gg4.mas5[1:20,]), cexRow = 0.9, Colv=NA, Rowv=NA)
-heatmap(t(Gg4.mas5[21:39,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+colnames(Cg4.rma) <- c("AMBRA","MYC")
+pdf("plots/Cg4_rma_correlations_heatmap.pdf")
+heatmap(t(Cg4.rma[1:20,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+heatmap(t(Cg4.rma[21:39,]), cexRow = 0.9, Colv=NA, Rowv=NA)
 dev.off()
 
-cor.test (Gwnt.mas5[,1], Gwnt.mas5[,2], method= "pearson")  
-cor.test (Gwnt.mas5[,1], Gwnt.mas5[,2], method= "kendall")
-cor.test (Gwnt.mas5[,1], Gwnt.mas5[,2], method= "spearman") 
+cor.test (Cwnt.rma[,1], Cwnt.rma[,2], method= "pearson")  
+cor.test (Cwnt.rma[,1], Cwnt.rma[,2], method= "kendall")
+cor.test (Cwnt.rma[,1], Cwnt.rma[,2], method= "spearman") 
 
-plot(Gwnt.mas5[,1], Gwnt.mas5[,2])
+plot(Cwnt.rma[,1], Cwnt.rma[,2])
 
-colnames(Gwnt.mas5) <- c("AMBRA","MYC")
-pdf("plots/Gwnt_mas5_correlations_heatmap.pdf")
-heatmap(t(Gwnt.mas5[1:8,]), cexRow = 0.9, Colv=NA, Rowv=NA)
+colnames(Cwnt.rma) <- c("AMBRA","MYC")
+pdf("plots/Cwnt_rma_correlations_heatmap.pdf")
+heatmap(t(Cwnt.rma[1:8,]), cexRow = 0.9, Colv=NA, Rowv=NA)
 dev.off()
 
 #plot all four
-pdf("plots/G_mas5_four_AMBRA.pdf")
-boxplot(Gshh.mas5[,1],Gg4.mas5[,1], Gg3.mas5[,1],Gwnt.mas5[,1])
+pdf("plots/C_rma_four_AMBRA.pdf")
+boxplot(Cshh.rma[,1],Cg4.rma[,1], Cg3.rma[,1],Cwnt.rma[,1])
 dev.off()
-pdf("plots/G.mas5_four_MYC.pdf")
-boxplot(Gshh.mas5[,2],Gg4.mas5[,2], Gg3.mas5[,2],Gwnt.mas5[,2])
+pdf("plots/C.rma_four_MYC.pdf")
+boxplot(Cshh.rma[,2],Cg4.rma[,2], Cg3.rma[,2],Cwnt.rma[,2])
 dev.off()
 
 #### verify if the data are normally distributed ####
 
 #evaluate data distribution
-d<- density(Gshh.mas5[,1])
+d<- density(Cshh.rma[,1])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gshh.mas5[,1])
+ggqqplot(Cshh.rma[,1])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gshh.mas5[,1])
+shapiro.test(Cshh.rma[,1])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained  0.01976 not normally distributed 
-d<- density(Gshh.mas5[,2])
+#obtained  0.0017 not normally distributed 
+d<- density(Cshh.rma[,2])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gshh.mas5[,2])
+ggqqplot(Cshh.rma[,2])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gshh.mas5[,2])
+shapiro.test(Cshh.rma[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained p-value= 0.8622 
+#obtained p-value = 3.538e-08 - not normally distributed
 
 #evaluate data distribution
-d<- density(Gg4.mas5[,1])
+d<- density(Cg4.rma[,1])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gg4.mas5[,1])
+ggqqplot(Cg4.rma[,1])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gg4.mas5[,1])
+shapiro.test(Cg4.rma[,1])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained  0.002488 - not normally distributed
-d<- density(Gg4.mas5[,2])
-plot(d)
-
-#Q-Q plot
-ggqqplot(Gg4.mas5[,2])
-#A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
-#normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gg4.mas5[,2])
-#if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained p-value= 0.02317 not normally distributed!
+#obtained   p-value = 7.722e-06 - not normally distributed
 
 #evaluate data distribution
-d<- density(Gg3.mas5[,1])
+d<- density(Cg4.rma[,2])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gg3.mas5[,1])
+ggqqplot(Cg4.rma[,2])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gg3.mas5[,1])
+shapiro.test(Cg4.rma[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained 0.764
-d<- density(Gg3.mas5[,2])
-plot(d)
-
-#Q-Q plot
-ggqqplot(Gg3.mas5[,2])
-#A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
-#normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gg3.mas5[,2])
-#if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained p-value= 0.648 
+#obtained  p-value < 2.2e-16 - not normally distributed
 
 #evaluate data distribution
-d<- density(Gwnt.mas5[,1])
+d<- density(Cg3.rma[,1])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gwnt.mas5[,1])
+ggqqplot(Cg3.rma[,1])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gwnt.mas5[,1])
+shapiro.test(Cg3.rma[,1])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained 0.542
-d<- density(Gwnt.mas5[,2])
+#obtained p-value = 0.8199
+d<- density(Cg3.rma[,2])
 plot(d)
 
 #Q-Q plot
-ggqqplot(Gwnt.mas5[,2])
+ggqqplot(Cg3.rma[,2])
 #A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
 #normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
-shapiro.test(Gwnt.mas5[,2])
+shapiro.test(Cg3.rma[,2])
 #if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
-#obtained p-value= 0.2506
+#obtained p-value = 0.02118 - NOT NORMALLY DISTRIBUTED
+
+#evaluate data distribution
+d<- density(Cwnt.rma[,1])
+plot(d)
+
+#Q-Q plot
+ggqqplot(Cwnt.rma[,1])
+#A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
+#normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
+shapiro.test(Cwnt.rma[,1])
+#if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
+#obtained  p-value = 0.1991
+d<- density(Cwnt.rma[,2])
+plot(d)
+
+#Q-Q plot
+ggqqplot(Cwnt.rma[,2])
+#A 45-degree reference line is also plotted.As all the points fall approximately along this reference line, we can assume normality.
+#normality test with Shapiro-Wilk???s method, based on the correlation between the data and the corresponding normal scores.
+shapiro.test(Cwnt.rma[,2])
+#if p-value > 0.05 implying that the distribution of the data are not significantly different from normal distribution,we can assume the normality.
+#obtained  p-value = 0.00531
 
 #t-test pairwise - AMBRA1
-t.test(as.vector(Gshh.mas5[,1]), as.vector(Gg3.mas5[,1]))  # p-value = 0.905 NOT SIGNIFICANT
-t.test(as.vector(Gg4.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value =  0.9656 NOT SIGNIFICANT
-t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value =  0.01454
-t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gshh.mas5[,1])) # p-value = 0.0154
-t.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg4.mas5[,1])) #  p-value = 0.01349
-t.test(as.vector(Gg4.mas5[,1]), as.vector(Gshh.mas5[,1])) #  p-value = 0.9178   NOT SIGNIFICANT
+t.test(as.vector(Cshh.rma[,1]), as.vector(Cg3.rma[,1]))  # p-value = 4.141e-12
+t.test(as.vector(Cg4.rma[,1]), as.vector(Cg3.rma[,1])) # p-value = 1.619e-08
+t.test(as.vector(Cwnt.rma[,1]), as.vector(Cg3.rma[,1])) # p-value = 3.269e-11
+t.test(as.vector(Cwnt.rma[,1]), as.vector(Cshh.rma[,1])) # p-value < 2.2e-16
+t.test(as.vector(Cwnt.rma[,1]), as.vector(Cg4.rma[,1])) # p-value < 2.2e-16
+t.test(as.vector(Cg4.rma[,1]), as.vector(Cshh.rma[,1])) #  p-value = 0.1424   NOT SIGNIFICANT
 
 #wilcox test - better when there are deviation from normality - AMBRA1
-wilcox.test(as.vector(Gshh.mas5[,1]), as.vector(Gg3.mas5[,1]))  #  p-value = 0.1191 NOT SIGNIFICANT
-wilcox.test(as.vector(Gg4.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value = 0.05708
-wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg3.mas5[,1])) # p-value = 1.495e-07
-wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gshh.mas5[,1])) #p-value =  1.521e-08
-wilcox.test(as.vector(Gwnt.mas5[,1]), as.vector(Gg4.mas5[,1]))  #p-value = 5.293e-09
-wilcox.test(as.vector(Gg4.mas5[,1]), as.vector(Gshh.mas5[,1])) # p-value = 0.7539  NOT SIGNIFICANT
+wilcox.test(as.vector(Cshh.rma[,1]), as.vector(Cg3.rma[,1]))  #  p-value =  2.933e-12
+wilcox.test(as.vector(Cg4.rma[,1]), as.vector(Cg3.rma[,1])) # p-value = 5.75e-07
+wilcox.test(as.vector(Cwnt.rma[,1]), as.vector(Cg3.rma[,1])) # p-value = 2.491e-10
+wilcox.test(as.vector(Cwnt.rma[,1]), as.vector(Cshh.rma[,1])) # p-value < 2.2e-16
+wilcox.test(as.vector(Cwnt.rma[,1]), as.vector(Cg4.rma[,1]))  #p-value = 5.293e-09
+wilcox.test(as.vector(Cg4.rma[,1]), as.vector(Cshh.rma[,1])) # p-value = 0.007327 NOT SIGNIFICANT
 
 #t-test pairwise - MYC
-t.test(as.vector(Gshh.mas5[,2]), as.vector(Gg3.mas5[,2]))  # p-value = 4.727e-09
-t.test(as.vector(Gg4.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 4.983e-09
-t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 0.5395 NOT SIGNIFICANT
-t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 2.594e-05
-t.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg4.mas5[,2])) # p-value = 6.663e-05
-t.test(as.vector(Gg4.mas5[,2]), as.vector(Gshh.mas5[,2])) #  p-value = 0.2443 NOT SIGNIFICANT
+t.test(as.vector(Cshh.rma[,2]), as.vector(Cg3.rma[,2]))  # p-value < 2.2e-16
+t.test(as.vector(Cg4.rma[,2]), as.vector(Cg3.rma[,2])) # p-value < 2.2e-16
+t.test(as.vector(Cwnt.rma[,2]), as.vector(Cg3.rma[,2])) # p-value = 0.002692 
+t.test(as.vector(Cwnt.rma[,2]), as.vector(Cshh.rma[,2])) # p-value < 2.2e-16
+t.test(as.vector(Cwnt.rma[,2]), as.vector(Cg4.rma[,2])) # p-value < 2.2e-16
+t.test(as.vector(Cg4.rma[,2]), as.vector(Cshh.rma[,2])) # p-value = 0.05075 NOT SIGNIFICANT
 
 #wilcox test - better when there are deviation from normality - MYC
-wilcox.test(as.vector(Gshh.mas5[,2]), as.vector(Gg3.mas5[,2]))  # p-value = 7.53e-07
-wilcox.test(as.vector(Gg4.mas5[,2]), as.vector(Gg3.mas5[,2])) #  p-value = 1.199e-09
-wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg3.mas5[,2])) # p-value = 0.9284 NOT SIGNIFICANT
-wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 4.571e-05
-wilcox.test(as.vector(Gwnt.mas5[,2]), as.vector(Gg4.mas5[,2]))  #  p-value = 1.669e-05
-wilcox.test(as.vector(Gg4.mas5[,2]), as.vector(Gshh.mas5[,2])) # p-value = 0.1875 NOT SIGNIFICANT
+wilcox.test(as.vector(Cshh.rma[,2]), as.vector(Cg3.rma[,2]))  # p-value < 2.2e-16
+wilcox.test(as.vector(Cg4.rma[,2]), as.vector(Cg3.rma[,2])) # p-value < 2.2e-16
+wilcox.test(as.vector(Cwnt.rma[,2]), as.vector(Cg3.rma[,2])) # p-value = 0.04
+wilcox.test(as.vector(Cwnt.rma[,2]), as.vector(Cshh.rma[,2])) # p-value < 2.2e-16
+wilcox.test(as.vector(Cwnt.rma[,2]), as.vector(Cg4.rma[,2]))  #  p-value < 2.2e-16
+wilcox.test(as.vector(Cg4.rma[,2]), as.vector(Cshh.rma[,2])) # p-value = 0.656 NOT SIGNIFICANT
 
 ### definition of 'overexpressing MYC' samples in g3 and wnt ###
 
