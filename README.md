@@ -2,6 +2,10 @@ Computational Biology Laboratory, Danish Cancer Society Research Center, Strandb
 
 Repository associated to the publication:
 
+Targeting cancer stem cells in medulloblastoma by inhibiting AMBRA1 dual function in autophagy and STAT3 signalling.
+Nazio F, Po A, Abballe L, Ballabio C, Diomedi Camassei F, Bordi M, Camera A, Caruso S, Caruana I, Pezzullo M, Ferraina C, Milletti G, Gianesello M, Reddel S, De Luca CD, Ceglie D, Marinelli S, Campello S, Papaleo E, Miele E, Cacchione A, Carai A, Vinci M, Velardi E, De Angelis B, Tiberi L, Quintarelli C, Mastronuzzi A, Ferretti E, Locatelli F, Cecconi F.
+Acta Neuropathol. 2021 Sep;142(3):537-564. doi: 10.1007/s00401-021-02347-7.
+
 
 author of the repository: Elena Papaleo, elenap@cancer.dk
 
